@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  autogreen:
+  autorequest:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -17,13 +17,13 @@ jobs:
           echo "👊👊👊👊👊👊action begin👊👊👊👊👊👊"
           TZ='Asia/Colombo'; export TZ
           
-          if curl --silent --show-error --fail https://xrxy-prod-xrxy-fxhl6n.mo5.mogenius.io/ -o /dev/null; then
+          if curl -I https://xrxy-prod-xrxy-fxhl6n.mo5.mogenius.io/ -o /dev/null; then
             echo ------------success excute curl JD-MOGENIUS!!!!!!!------------
           else
             echo "JD-MOGENIUS Fail!!!"
           fi
           
-          if curl --silent --show-error --fail  https://test-prod-test-85clyr.mo4.mogenius.io/ -o /dev/null; then
+          if curl -I https://test-prod-test-85clyr.mo4.mogenius.io/ -o /dev/null; then
             echo ------------success excute curl JK-MOGENIUS!!!!!!!------------
           else
             echo "JK-MOGENIUS Fail!!!"
