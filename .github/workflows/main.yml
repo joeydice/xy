@@ -1,0 +1,45 @@
+name: request
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  autogreen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+        
+      - name: Run a multi-line script
+        run: |
+          echo "👊👊👊👊👊👊action begin👊👊👊👊👊👊"
+          TZ='Asia/Colombo'; export TZ
+          
+          if curl -sL --fail https://test-prod-test-85clyr.mo4.mogenius.io/ -o /dev/null; then
+            echo ------------success excute curl JK-MOGENIUS!!!!!!!------------
+          else
+            echo "JK-MOGENIUS Fail!!!"
+          fi
+          
+          if curl -sL --fail https://xrxy-prod-xrxy-fxhl6n.mo5.mogenius.io/ -o /dev/null; then
+            echo ------------success excute curl JD-MOGENIUS!!!!!!!------------
+          else
+            echo "JD-MOGENIUS Fail!!!"
+          fi
+
+      - name: Auto green
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git pull --rebase
+          git commit --allow-empty -m "auto-request"
+          git push
+          
+          sleep 1
+          echo -e "\033[33;40m  ($0) ${TIME}: this shell script execution duration: ${SECONDS}s  \033[0m"
+          echo "😊😊😊😊😊😊success excute shell😊😊😊😊😊😊"
+
+          
