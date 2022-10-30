@@ -21,14 +21,13 @@ jobs:
             echo ------------success excute curl JK-MOGENIUS!!!!!!!------------
           else
             echo "JK-MOGENIUS Fail!!!"
-          fi
           
-          if curl -sL --fail https://xrxy-prod-xrxy-fxhl6n.mo5.mogenius.io/ -o /dev/null; then
+          if [ "$(curl -sL -w '%{http_code}' https://xrxy-prod-xrxy-fxhl6n.mo5.mogenius.io/ -o /dev/null)" = "400" ]; then
             echo ------------success excute curl JD-MOGENIUS!!!!!!!------------
           else
             echo "JD-MOGENIUS Fail!!!"
           fi
-
+          
       - name: Auto request
         run: |
           git config user.name github-actions
