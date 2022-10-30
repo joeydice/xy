@@ -17,13 +17,13 @@ jobs:
           echo "👊👊👊👊👊👊action begin👊👊👊👊👊👊"
           TZ='Asia/Colombo'; export TZ
           
-          if curl -sL --fail https://xrxy-prod-xrxy-fxhl6n.mo5.mogenius.io/ -o /dev/null; then
+          if curl --silent --show-error --fail https://xrxy-prod-xrxy-fxhl6n.mo5.mogenius.io/ -o /dev/null; then
             echo ------------success excute curl JD-MOGENIUS!!!!!!!------------
           else
             echo "JD-MOGENIUS Fail!!!"
           fi
           
-          if curl -sL --fail  https://test-prod-test-85clyr.mo4.mogenius.io/ -o /dev/null; then
+          if curl --silent --show-error --fail  https://test-prod-test-85clyr.mo4.mogenius.io/ -o /dev/null; then
             echo ------------success excute curl JK-MOGENIUS!!!!!!!------------
           else
             echo "JK-MOGENIUS Fail!!!"
