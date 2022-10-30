@@ -29,6 +29,12 @@ jobs:
             echo "JK-MOGENIUS Fail!!!"
           fi
           
+          if curl -I jdxray-joeydice.koyeb.app/ -o /dev/null; then
+            echo ------------success excute curl JK-MOGENIUS!!!!!!!------------
+          else
+            echo "JD-KOYEB Fail!!!"
+          fi
+          
       - name: Auto request
         run: |
           git config user.name github-actions
